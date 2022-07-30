@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="home-page">
     <myCatalogue></myCatalogue>
     <!-- <router-link to="/">CompositionAPI</router-link> | -->
   </div>
@@ -13,6 +13,8 @@ import myCatalogue from "./components/catalogue.vue";
 
 <style lang="scss">
 #app {
+  height: 100vh;
+  width: 100vw;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,8 +22,9 @@ import myCatalogue from "./components/catalogue.vue";
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+#home-page {
+  height: 100%;
+  padding: 10px;
 
   a {
     font-weight: bold;

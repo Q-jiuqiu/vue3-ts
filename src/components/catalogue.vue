@@ -2,11 +2,11 @@
  * @Author: quling
  * @Date: 2022-07-30 17:18:39
  * @LastEditors: quling
- * @LastEditTime: 2022-07-30 18:01:30
+ * @LastEditTime: 2022-07-30 18:06:59
  * @Description: 
 -->
 <template>
-  <div class="catalogue">
+  <div class="catalogue" scoped>
     <!-- :theme="theme" -->
     <div class="catalogue-menu">
       <Menu
@@ -61,5 +61,14 @@
 // };
 </script>
 
-<style>
+<style lang="scss">
+.catalogue {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  &-container {
+    flex: 1;
+  }
+}
 </style>
