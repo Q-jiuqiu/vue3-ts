@@ -2,7 +2,7 @@
  * @Author: quling
  * @Date: 2022-09-06 13:47:39
  * @LastEditors: quling
- * @LastEditTime: 2022-09-06 20:03:57
+ * @LastEditTime: 2022-09-07 12:06:42
  * @Description: 
  */
 // 原语 string、number、boolean（首字母大写也可以）
@@ -88,12 +88,13 @@ function Part5() {
 function Part6() {
   type Point = {
     x: number,
-    y: number
+    y?: number // 可选属性
   }
-  function f1(pt:Point) {
-    console.log(pt.x, pt.y);   
+  function f1(pt: Point) {
+    console.log(pt.x, pt.y);
   }
   f1({ x: 1, y: 2 })
+  f1({ x: 1 })
   // 不可重复 报错:标识符“Point”重复
   // type Point = {
   //   x: number,
@@ -107,11 +108,102 @@ function Part6() {
 
   // 别名只是别名,不会改变原始类型
   type myString = string
-  function f2(param1:string) :myString {
+  function f2(param1: string): myString {
     return param1
   }
 }
 
 // 接口
+function Part7() {
+  interface Point {
+    x: number,
+    y: number,
+    readonly name: string // 只读属性,只读属性也可以设为可选属性
+  }
+  function f1(pt: Point) {
+    console.log(pt.x, pt.y);
+    // pt.name = "Jek" 无法分配到 "name" ，因为它是只读属性
+  }
+  f1({ x: 1, y: 2, name: "Mike" })
+  // interface Point{
+  //   x: number,
+  //   y: string, // 后续属性声明必须属于同一类型。属性“y”的类型必须为“number”，但此处却为类型“string”
+  // }
+}
+
+// 类型别名和接口的比较--相同点
+function Part8_1() {
+  // 1.都可以描述Object和Function
+  // Object
+  type Point1 = {
+    x: number,
+    y: number
+  }
+  interface Point2 {
+    x: number,
+    y: number
+  }
+  // Function 返回空
+  type setPoint1 = (x: number, y: number) => void
+  interface setPoint2 {
+    (x: number, y: number): void
+  }
+
+  // 2.都可被继承 还可以相互继承
+  type Z = {
+    z: number
+  }
+  // A.type是通过交叉点扩展类型   newPoint1_x 具有x,y,z属性
+  // a.type解除type
+  type newPoint1_1 = Point1 & Z
+  // b.type继承interface
+  type newPoint1_2 = Point1 & Point2
+  // B.interface是扩展接口  newPoint2_x 具有x,y,z属性
+  // c.interface继承interface
+  interface newPoint2_1 extends Point2 {
+    z: number
+  }
+  // d.interface继承type
+  interface newPoint2_2 extends Point1 {
+    z: number
+  }
+
+  // 3.实现implements
+  // a.类可以实现interface 以及 type(除联合类型外)
+  interface ICat1 {
+    setName(name: string): void;
+  }
+  class Cat1 implements ICat1 {
+    setName(name: string): void {
+      // todo
+    }
+  }
+  // type  
+  type ICat2 = {
+    setName(name: string): void;
+  }
+  class Cat2 implements ICat2 {
+    setName(name: string): void {
+      // todo
+    }
+  }
+  // 类无法实现联合类型, 是什么意思呢
+  //   type Person = { name: string; } | { setName(name:string): void };
+  // // 无法对联合类型Person进行实现
+  // // error: A class can only implement an object type or intersection of object types with statically known members.
+  // class Student implements Person { 类只能实现具有静态已知成员的对象类型或对象类型的交集
+  //   name= "张三";
+  //   setName(name:string):void{
+  //         // todo
+  //     }
+  // }
+}
+// 类型别名和接口的比较--不同点
+function Part8_2() {
+  // 1. 定义基本类型别名 type可以定义基本类型别名, 但是interface无法定义
+  // 2. 声明联合类型 type可以声明联合类型
+  // 3. 声明元组 type可以声明 元组类型 
+  type Data = [number, string];
+}
 
 
