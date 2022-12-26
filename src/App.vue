@@ -1,3 +1,11 @@
+<!--
+ * @Author: quling
+ * @Date: 2022-07-30 20:46:54
+ * @LastEditors: quling
+ * @LastEditTime: 2022-12-26 14:37:32
+ * @Description: 
+ * @FilePath: \my-vite-vue3\src\App.vue
+-->
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
